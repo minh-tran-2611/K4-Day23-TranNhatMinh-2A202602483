@@ -1,0 +1,24 @@
+{
+  "topic": "survey about LLM agents and tool use",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "elapsed_s": 609.1,
+  "subagent_calls": 4,
+  "tool_calls": {
+    "write_todos": 4,
+    "task": 4,
+    "read_file": 5,
+    "write_file": 2,
+    "execute": 3
+  },
+  "tokens": {
+    "input": 226646,
+    "output": 16355
+  },
+  "n_sources": 15,
+  "source_families": [
+    "arxiv",
+    "hf-daily",
+    "hf-search",
+    "web"
+  ]
+}

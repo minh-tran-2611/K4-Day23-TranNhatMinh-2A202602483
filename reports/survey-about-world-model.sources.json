@@ -1,0 +1,130 @@
+[
+  {
+    "n": 1,
+    "id": "2607.06401",
+    "url": "https://arxiv.org/html/2607.06401",
+    "title": "A Definition and Roadmap for World Models",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 2,
+    "id": "World_model_(artificial_intelligence)",
+    "url": "https://en.wikipedia.org/wiki/World_model_%28artificial_intelligence%29",
+    "title": "World model (artificial intelligence)",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 3,
+    "id": "2606.00133",
+    "url": "https://arxiv.org/abs/2606.00133",
+    "title": "World Models: A Comprehensive Survey of Architectures, Methodologies, Reasoning Paradigms, and Applications",
+    "date": "2026-06-09",
+    "source": "arxiv"
+  },
+  {
+    "n": 4,
+    "id": "2610.12407",
+    "url": "https://arxiv.org/abs/2610.12407",
+    "title": "LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 5,
+    "id": "2402.08268",
+    "url": "https://huggingface.co/papers/2402.08268",
+    "title": "World Model on Million-Length Video And Language With RingAttention",
+    "date": "2024-02-13",
+    "source": "hf-search"
+  },
+  {
+    "n": 6,
+    "id": "2609.05588",
+    "url": "https://arxiv.org/abs/2609.05588",
+    "title": "GE-Act 2.0: Pretraining and Scaling a World-Action Model for Robotic Manipulation",
+    "date": "2026-09-04",
+    "source": "arxiv"
+  },
+  {
+    "n": 7,
+    "id": "2610.12468",
+    "url": "https://arxiv.org/abs/2610.12468",
+    "title": "DreamTrue: Action-Faithful Robot World Model with Counterfactual Post-Training",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 8,
+    "id": "2610.12461",
+    "url": "https://arxiv.org/abs/2610.12461",
+    "title": "OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 9,
+    "id": "2610.12459",
+    "url": "https://huggingface.co/papers/2610.12459",
+    "title": "WorldGuide: Goal-Directed Video World Model for Procedural Task Execution",
+    "date": "2026-10-08",
+    "source": "hf-daily"
+  },
+  {
+    "n": 10,
+    "id": "2506.01392",
+    "url": "https://huggingface.co/papers/2506.01392",
+    "title": "Sparse Imagination for Efficient Visual World Model Planning",
+    "date": "2025-06-02",
+    "source": "hf-search"
+  },
+  {
+    "n": 11,
+    "id": "2605.00080",
+    "url": "https://huggingface.co/papers/2605.00080",
+    "title": "World Model for Robot Learning: A Comprehensive Survey",
+    "date": "2026-04-30",
+    "source": "hf-search"
+  },
+  {
+    "n": 12,
+    "id": "10.1145/3746449",
+    "url": "https://dl.acm.org/doi/10.1145/3746449",
+    "title": "Understanding World or Predicting Future? A Comprehensive Survey of World Models",
+    "date": "2025-09-09",
+    "source": "web"
+  },
+  {
+    "n": 13,
+    "id": "2609.39151",
+    "url": "https://arxiv.org/abs/2609.39151",
+    "title": "Linear Recurrent Memory Suffices to Distil a World-Model Policy for Robot Air Hockey",
+    "date": "2026-09-30",
+    "source": "arxiv"
+  },
+  {
+    "n": 14,
+    "id": "2610.12464",
+    "url": "https://arxiv.org/abs/2610.12464",
+    "title": "What 30,000 Hours of Ego-centric Video Does Not Teach",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 15,
+    "id": "2603.03195",
+    "url": "https://huggingface.co/papers/2603.03195",
+    "title": "Chain of World: World Model Thinking in Latent Motion",
+    "date": "2026-03-03",
+    "source": "hf-search"
+  },
+  {
+    "n": 16,
+    "id": "2507.05169",
+    "url": "https://huggingface.co/papers/2507.05169",
+    "title": "Critiques of World Models",
+    "date": "2025-07-07",
+    "source": "hf-search"
+  }
+]

@@ -1,0 +1,210 @@
+[
+  {
+    "n": 1,
+    "id": "2610.00812",
+    "url": "https://arxiv.org/abs/2610.00812",
+    "title": "Video Generation Models: A Survey of Post-Training and Alignment",
+    "date": "2026-09-30",
+    "source": "arxiv"
+  },
+  {
+    "n": 2,
+    "id": "2610.11770",
+    "url": "https://arxiv.org/abs/2610.11770",
+    "title": "From Video Clips to Creation Trajectory: Sora100K for AI-Native Video Creation",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 3,
+    "id": "video-generation-models-as-world-simulators",
+    "url": "https://openai.com/index/video-generation-models-as-world-simulators/",
+    "title": "Video generation models as world simulators | OpenAI",
+    "date": "2024-02-15",
+    "source": "web"
+  },
+  {
+    "n": 4,
+    "id": "2608.20379",
+    "url": "https://arxiv.org/abs/2608.20379",
+    "title": "A Survey on Foundations and Frontiers of Multimodal Agentic Frameworks: Techniques and Applications",
+    "date": "2026-06-28",
+    "source": "arxiv"
+  },
+  {
+    "n": 5,
+    "id": "10.1007/s10462-026-11525-6",
+    "url": "https://link.springer.com/article/10.1007/s10462-026-11525-6",
+    "title": "Generative AI for multimodal content: a survey with empirical and experimental evaluations",
+    "date": "2026-03-19",
+    "source": "web"
+  },
+  {
+    "n": 6,
+    "id": "2405.14221",
+    "url": "https://arxiv.org/abs/2405.14221",
+    "title": "Survey on Visual Signal Coding and Processing with Generative Models",
+    "date": "2024-05-23",
+    "source": "arxiv"
+  },
+  {
+    "n": 7,
+    "id": "2412.14169",
+    "url": "https://huggingface.co/papers/2412.14169",
+    "title": "Autoregressive Video Generation without Vector Quantization",
+    "date": "2024-12-18",
+    "source": "hf-search"
+  },
+  {
+    "n": 8,
+    "id": "2310.19512",
+    "url": "https://huggingface.co/papers/2310.19512",
+    "title": "VideoCrafter1: Open Diffusion Models for High-Quality Video Generation",
+    "date": "2023-10-30",
+    "source": "hf-search"
+  },
+  {
+    "n": 9,
+    "id": "1811.09393",
+    "url": "https://huggingface.co/papers/1811.09393",
+    "title": "Learning Temporal Coherence via Self-Supervision for GAN-based Video Generation",
+    "date": "2018-11-23",
+    "source": "hf-search"
+  },
+  {
+    "n": 10,
+    "id": "2608.26214",
+    "url": "https://arxiv.org/abs/2608.26214",
+    "title": "Surgical Video Generation From Diffusion to World Models: A Survey",
+    "date": "2026-08-26",
+    "source": "arxiv"
+  },
+  {
+    "n": 11,
+    "id": "vbench-cvpr2024",
+    "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Huang_VBench_Comprehensive_Benchmark_Suite_for_Video_Generative_Models_CVPR_2024_paper.pdf",
+    "title": "VBench: Comprehensive Benchmark Suite for Video Generative Models",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 12,
+    "id": "videoscore-arxiv2024",
+    "url": "https://arxiv.org/pdf/2406.15252v3.pdf",
+    "title": "VIDEOSCORE: Building Automatic Metrics to Simulate fine-grained",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 13,
+    "id": "videobench-cvpr2025",
+    "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Han_Video-Bench_Human-Aligned_Video_Generation_Benchmark_CVPR_2025_paper.pdf",
+    "title": "Video-Bench: Human-Aligned Video Generation Benchmark",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 14,
+    "id": "vbenchplusplus-arxiv2024",
+    "url": "https://arxiv.org/html/2411.13503v1",
+    "title": "VBench++: Comprehensive and Versatile Benchmark Suite for Video Generative Models",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 15,
+    "id": "aigcbench",
+    "url": "https://www.benchcouncil.org/AIGCBench/",
+    "title": "AIGCBench: Comprehensive Evaluation of Image-to-Video ...",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 16,
+    "id": "2610.11736",
+    "url": "https://arxiv.org/abs/2610.11736",
+    "title": "Towards Unified Evaluation of Prompt Enhancers for Video Generation",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 17,
+    "id": "2610.12427",
+    "url": "https://arxiv.org/abs/2610.12427",
+    "title": "FastBench: Can Streaming VLMs Perceive High-Dynamic Real-World Streams?",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 18,
+    "id": "2412.20404",
+    "url": "https://arxiv.org/abs/2412.20404",
+    "title": "Open-Sora: Democratizing Efficient Video Production for All",
+    "date": "2024-12-29",
+    "source": "web"
+  },
+  {
+    "n": 19,
+    "id": "google-deepmind-veo-2-imagen-3-release",
+    "url": "https://www.digitaltrends.com/computing/google-deepmind-veo-2-imagen-3-release/",
+    "title": "Google strikes back with an answer to OpenAI's Sora launch - Digital Trends",
+    "date": "2024-12-16",
+    "source": "web"
+  },
+  {
+    "n": 20,
+    "id": "2610.12459",
+    "url": "https://huggingface.co/papers/2610.12459",
+    "title": "WorldGuide: Goal-Directed Video World Model for Procedural Task Execution",
+    "date": "2026-10-08",
+    "source": "hf-daily"
+  },
+  {
+    "n": 21,
+    "id": "2610.08941",
+    "url": "https://huggingface.co/papers/2610.08941",
+    "title": "SPW-Nav: A Streaming Panoramic World Model for Language-Guided Navigation",
+    "date": "2026-10-06",
+    "source": "hf-daily"
+  },
+  {
+    "n": 22,
+    "id": "10.1145/3728633",
+    "url": "https://dl.acm.org/doi/10.1145/3728633",
+    "title": "AI-Generated Content (AIGC) for Various Data Modalities: A Survey",
+    "date": "2025-05-06",
+    "source": "web"
+  },
+  {
+    "n": 23,
+    "id": "10.1007/s11704-025-51171-9",
+    "url": "https://link.springer.com/article/10.1007/s11704-025-51171-9",
+    "title": "Next-Gen AIGC: a review of multimodal foundation models for text-to-media innovations",
+    "date": "2026-02-20",
+    "source": "web"
+  },
+  {
+    "n": 24,
+    "id": "2609.05503",
+    "url": "https://arxiv.org/abs/2609.05503",
+    "title": "A Survey on Adversarial Attacks and Defenses for Diffusion Models Across Multiple Modalities",
+    "date": "2026-08-28",
+    "source": "arxiv"
+  },
+  {
+    "n": 25,
+    "id": "10.1007/s10462-025-11331-6",
+    "url": "https://link.springer.com/article/10.1007/s10462-025-11331-6",
+    "title": "Video diffusion generation: comprehensive review and open problems",
+    "date": "2025-08-20",
+    "source": "web"
+  },
+  {
+    "n": 26,
+    "id": "2610.11361",
+    "url": "https://arxiv.org/abs/2610.11361",
+    "title": "SepGen: Multi-Stem Audio-Video Separation and Generation in a Single Model",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  }
+]

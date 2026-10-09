@@ -1,0 +1,26 @@
+{
+  "topic": "survey about world model",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "elapsed_s": 1229.9,
+  "subagent_calls": 4,
+  "tool_calls": {
+    "write_todos": 1,
+    "task": 4,
+    "read_file": 16,
+    "execute": 16,
+    "write_file": 2,
+    "edit_file": 4,
+    "grep": 1
+  },
+  "tokens": {
+    "input": 943477,
+    "output": 56450
+  },
+  "n_sources": 16,
+  "source_families": [
+    "arxiv",
+    "hf-daily",
+    "hf-search",
+    "web"
+  ]
+}
