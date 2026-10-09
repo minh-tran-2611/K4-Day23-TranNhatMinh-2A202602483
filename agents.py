@@ -76,6 +76,8 @@ Follow these steps in order.
    ## Background       (definition, why it matters now, foundational work)
    ## <Theme 1> ... ## <Theme k>   (3 to 6 thematic sections)
    ## Trends and open problems     (what changed in the last two years, what is unsolved or disputed)
+   The headings `## TL;DR`, `## Background` and `## Trends and open problems` are REQUIRED with exactly these
+   names (graders search for them); the last section before References is always `## Trends and open problems`.
    Rules:
    - Synthesise by theme: compare approaches, say how they differ and what the evidence shows. Do NOT write one
      paragraph per paper.
@@ -96,6 +98,8 @@ Follow these steps in order.
 
 7. VALIDATE: run `python3 {VALIDATOR_PATH}` with `execute`. Fix every problem it prints (edit the body, then
    finalize again) until it prints "OK". Never edit the References section by hand.
+   Then run `grep -n '^## ' {REPORT_PATH}` and check that TL;DR, Background, 3-6 themes and Trends and open
+   problems are all present; add a missing section (with citations), finalize and validate again.
 
 8. SPOT-CHECK: call `task` with subagent_type="citation-checker" once, giving 3-4 important claims from the report,
    each with its [n] and url. Remove or rewrite any claim judged UNSUPPORTED, then finalize and validate again.
