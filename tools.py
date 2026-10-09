@@ -44,7 +44,7 @@ class RetryableError(Exception):
         self.retry_after = retry_after
 
 
-# ---- TODO 1: retry helper ----
+# ---- 1. retry helper ----
 def with_retry(fn, *, attempts=5, base=1.0, cap=30.0, sleep=time.sleep):
     """Call fn(); when it raises RetryableError (or httpx.TransportError), wait and call it again.
 
@@ -97,7 +97,7 @@ def _error(exc, secret=None):
     return message.replace(secret, "***") if secret else message
 
 
-# ---- TODO 2: arXiv ----
+# ---- 2. arXiv ----
 def _arxiv_get(params):
     global _arxiv_last_call
     with _arxiv_lock:
@@ -138,7 +138,7 @@ def arxiv_search(query: str, max_results: int = 10) -> str:
         return _error(exc)
 
 
-# ---- TODO 3: Hugging Face ----
+# ---- 3. Hugging Face ----
 def _hf_record(item):
     paper = item.get("paper") or {}
     paper_id = paper.get("id")
@@ -187,7 +187,7 @@ def hf_search_papers(query: str, limit: int = 10) -> str:
         return _error(exc)
 
 
-# ---- TODO 4: web search / fetch through the Exa MCP endpoint ----
+# ---- 4. web search / fetch through the Exa MCP endpoint ----
 def _exa_call(name, arguments):
     """Call one Exa MCP tool over plain HTTP (JSON-RPC tools/call). Returns its text; retries on rate limits."""
     key = (os.getenv("EXA_API_KEY") or "").strip()
@@ -245,7 +245,7 @@ def web_fetch(url: str) -> str:
     return text if len(text) <= FETCH_CHARS else text[:FETCH_CHARS] + "\n...[truncated]"
 
 
-# ---- TODO 5: registry (the researcher subagent gets exactly these) ----
+# ---- 5. registry (the researcher subagent gets exactly these) ----
 SOURCE_TOOLS = [arxiv_search, hf_daily_papers, hf_search_papers, web_search, web_fetch]
 
 
@@ -260,7 +260,4 @@ if __name__ == "__main__":
         ("web_search", web_search, {"query": "survey paper on world models", "num_results": 2}),
         ("web_fetch", web_fetch, {"url": "https://arxiv.org/abs/1803.10122"}),
     ]:
-        try:
-            print(f"== {name}\n{fn.invoke(args)[:400]}\n")
-        except NotImplementedError as exc:
-            print(f"== {name}: not implemented yet ({exc})\n")
+        print(f"== {name}\n{fn.invoke(args)[:400]}\n")

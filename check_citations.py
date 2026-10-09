@@ -1,4 +1,4 @@
-"""check_citations.py - STUDENT IMPLEMENTS `check`.   Runs INSIDE the sandbox (standard library only).
+"""check_citations.py - citation validator.   Runs INSIDE the sandbox (standard library only).
 
 research.py uploads this file to the sandbox and the lead agent runs it with the `execute` tool:
     python3 /tmp/work/research/check_citations.py [report.md] [sources.json]
@@ -45,23 +45,10 @@ def _cited_numbers(body):
 def check(report_text, sources):
     """Return a list of problem strings (empty list = OK).
 
-    PSEUDO-CODE:
-      problems = []
-      if sources is empty: return ["no sources in sources.json"]
-      for each source entry:
-          n must be an int                       -> problem if not
-          url must start with http:// or https://-> problem if not
-          the same url must not appear twice     -> problem if duplicated
-      split report_text at the heading "## References":
-          body = text before it; if the heading is missing -> problem
-      cited = set of numbers found as [n] in the BODY only (not in the reference list; use a regex)
-      every number in `cited` must exist in sources -> problem "[n] cited but missing from sources.json"
-      every source number must be in `cited`        -> problem "source [n] never cited"
-      the lines of the References section that start with "[n]" (regex) are the reference lines:
-          every source needs exactly ONE reference line (none missing, no number twice, no number that is not a source)
-          each reference line holds exactly ONE http(s) URL and it must equal that source's url
-          (a line bundling several sources under one number is a problem)
-      return problems
+    Rules (GUIDE part 4): sources non-empty, each with an int `n`, an http(s) url and no duplicate url; a
+    `## References` heading; every [n] cited in the body (grouped [1, 2] / [1-3] expanded, code and Markdown links
+    ignored) is a source and every source is cited; exactly one reference line per source, holding exactly one URL
+    equal to that source's url.
     """
     problems = []
     if not isinstance(sources, list) or not sources:
