@@ -4,6 +4,66 @@ Lab dựng một **hệ thống deep research đa tác tử**: người dùng ch
 
 Hình thức: **bài thực hành cá nhân**. Ngôn ngữ lập trình: Python 3.11 trở lên.
 
+## Bài nộp - Trần Nhật Minh (2A202602483)
+
+### Cài đặt và chạy
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate                # Windows  (Linux/macOS: source .venv/bin/activate)
+pip install -r requirements.txt
+cp .env.example .env                  # điền khóa của bạn (xem bảng cấu hình bên dưới)
+python research.py "survey about world model"
+python self_check.py                  # kiểm tra trước khi nộp, không tốn token
+python -m pytest -q tests             # unit test (pip install pytest)
+```
+
+Cấu hình đã dùng để sinh `reports/` (khóa nằm trong `.env`, **không** commit):
+
+| Thành phần | Giá trị |
+|---|---|
+| LLM | NVIDIA NIM (endpoint tương thích OpenAI): `LAB_BASE_URL=https://integrate.api.nvidia.com/v1`, `LAB_MODEL=nvidia/nemotron-3-super-120b-a12b`, `LAB_API_KEY=nvapi-...` |
+| Sandbox | `SANDBOX=docker` (container `python:3.12-slim`, `--network none`) |
+| Web | Exa MCP với `EXA_API_KEY` |
+
+Cũng chạy được với Gemini (`LAB_MODEL=google_genai:<model>` + `GOOGLE_API_KEY`; gói `langchain-google-genai` đã có trong `requirements.txt`) hoặc Daytona (`DAYTONA_API_KEY`, bỏ `SANDBOX=docker`).
+
+### Đọc thư mục `reports/`
+
+Mỗi chủ đề có ba tệp, tên là slug của chủ đề:
+
+- `<slug>.md`: báo cáo (TL;DR, Background, các phần theo chủ đề, Trends and open problems, References). Mọi `[n]` trỏ tới dòng `[n]` trong References.
+- `<slug>.sources.json`: danh sách nguồn `{n, id, url, title, date, source}`; `source` là công cụ đã tìm ra nguồn (`arxiv`, `hf-daily`, `hf-search`, `web`).
+- `<slug>.meta.json`: số liệu lần chạy: `model`, `elapsed_s`, `subagent_calls` (số lần lead gọi `task`), `tool_calls`, `tokens` (chỉ tin nhắn của lead), `n_sources`, `source_families`.
+
+Kiểm tra một báo cáo: `python check_citations.py reports/<slug>.md reports/<slug>.sources.json`.
+
+### Kết quả 5 chủ đề
+
+Model `nvidia/nemotron-3-super-120b-a12b` (NVIDIA NIM), sandbox Docker. `python self_check.py`: **READY to submit**; `check_citations.py` in `OK` cho cả 5 báo cáo.
+
+| Chủ đề | Báo cáo | Nguồn | Họ nguồn | `subagent_calls` | Phút |
+|---|---|---|---|---|---|
+| survey about world model | [survey-about-world-model.md](reports/survey-about-world-model.md) | 16 | arxiv, hf-daily, hf-search, web | 4 | 20 |
+| survey about reinforcement learning for LLM reasoning | [survey-about-reinforcement-learning-for-llm-reasoning.md](reports/survey-about-reinforcement-learning-for-llm-reasoning.md) | 19 | arxiv, hf-daily, hf-search, web | 10 | 52 |
+| survey about LLM agents and tool use | [survey-about-llm-agents-and-tool-use.md](reports/survey-about-llm-agents-and-tool-use.md) | 15 | arxiv, hf-daily, hf-search, web | 4 | 10 |
+| survey about video and multimodal generation | [survey-about-video-and-multimodal-generation.md](reports/survey-about-video-and-multimodal-generation.md) | 26 | arxiv, hf-daily, hf-search, web | 5 | 15 |
+| survey about efficient inference and small language models | [survey-about-efficient-inference-and-small-language-models.md](reports/survey-about-efficient-inference-and-small-language-models.md) | 15 | arxiv, hf-search, web | 4 | 9 |
+
+Ghi chú từ quá trình chạy:
+
+- Gemini (`gemini-3.8-flash`) liên tục trả `503 high demand` nên chuyển sang NVIDIA NIM; từ đó thêm `ModelRetryMiddleware` cho lỗi tạm thời.
+- Chạy không có `EXA_API_KEY` thì `web_fetch`/`web_search` bị giới hạn tốc độ liên tục (bước citation-checker kéo dài hàng chục phút); có khóa thì mỗi lời gọi khoảng 1-2 giây.
+- Lần chạy đầu của chủ đề world model thiếu mục `## Trends and open problems` và mô hình tưởng "hai năm gần nhất" là 2023-2024: prompt được bổ sung ngày hiện tại, tên mục bắt buộc và bước `grep '^## '` tự kiểm tra, rồi chạy lại chủ đề đó.
+- `tokens` trong `meta.json` chỉ đếm tin nhắn của lead; chi phí thật (gồm subagent) cao hơn.
+
+### Những điểm đáng chú ý trong cài đặt
+
+- `tools.py`: `with_retry` (backoff lũy thừa + jitter, tôn trọng `Retry-After`, chặn `cap`, không ngủ sau lần cuối); arXiv giữ khoảng cách 3 giây bằng khóa luồng (các researcher chạy song song) và làm sạch truy vấn; Exa free tier báo giới hạn tốc độ bằng HTTP 200 + cờ `result._meta["ai.exa/rateLimited"]` nên công cụ phát hiện cờ này để retry; khóa Exa bị che khỏi mọi chuỗi `ERROR`.
+- `agents.py`: lead lập kế hoạch bằng `write_todos`, giao 3-5 researcher song song, kiểm tra notes, gộp `sources.json`, kiểm tra đủ 3 họ nguồn, chạy finalizer + validator trong sandbox, rồi nhờ `citation-checker` kiểm tra mẫu. Giới hạn `ModelCallLimitMiddleware`/`ToolCallLimitMiddleware` cho lead và từng subagent (kể cả `general-purpose` được thay bằng bản có giới hạn), `recursion_limit=1000`, và `ModelRetryMiddleware` chỉ retry lỗi tạm thời của nhà cung cấp (503 "high demand", 429, timeout).
+- `research.py`: sandbox luôn được dọn bằng `open_sandbox`; chạy hỏng thì in `FAILED`, thoát mã 1 và không ghi tệp nào; in một dòng log cho mỗi lần gọi công cụ ra stderr để theo dõi.
+- `tests/`: unit test cho `with_retry`, làm sạch truy vấn arXiv, che khóa Exa, `check_citations`, `slugify`, `summarize`, `save_outputs`.
+
 ## 1. Mục tiêu học tập
 
 Sau lab, bạn có thể:
