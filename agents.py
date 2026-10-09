@@ -3,7 +3,8 @@
 Docs: https://docs.langchain.com/oss/python/deepagents/overview  (subagents: `subagents=[{...}]` of create_deep_agent)
 """
 from deepagents import create_deep_agent
-from langchain.agents.middleware import ModelCallLimitMiddleware, TodoListMiddleware, ToolCallLimitMiddleware
+from langchain.agents.middleware import (ModelCallLimitMiddleware, ModelRetryMiddleware, TodoListMiddleware,
+                                         ToolCallLimitMiddleware)
 
 from tools import SOURCE_TOOLS, web_fetch
 
@@ -48,9 +49,10 @@ Follow these steps in order.
    cover it (e.g. foundations/definitions, main families of approaches, recent advances of the last two years,
    evaluation/benchmarks, applications and open problems).
 
-2. DELEGATE IN PARALLEL. In ONE turn, call `task` once per sub-question with subagent_type="researcher".
+2. DELEGATE IN PARALLEL. Emit ALL the `task` calls (one per sub-question, subagent_type="researcher") together in
+   a SINGLE response, so they run at the same time; do not wait for one researcher before starting the next.
    The researcher sees ONLY your message, so every delegation message must contain:
-   - the overall topic and the exact sub-question;
+   - the overall topic, the exact sub-question and today's date (for "recent" work);
    - the notes file to write: {NOTES_DIR}/<NN>-<slug>.md (NN = 01, 02, ...; slug = short kebab-case);
    - the source families to use: at least two, and across all researchers cover arxiv, hf-search and web
      (add hf-daily for "recent/trending" questions);
@@ -135,7 +137,8 @@ Method:
 """
 
 CHECKER_PROMPT = """You are a CITATION CHECKER. You receive claims from a report, each with a citation number and a
-source url. For each claim, call web_fetch on its url (once) and judge whether the fetched text supports it.
+source url. For each claim, call web_fetch on its url ONCE (never fetch the same url
+twice; an ERROR means UNVERIFIABLE) and judge whether the fetched text supports it.
 
 Answer one line per claim:
 [n] SUPPORTED | PARTIAL | UNSUPPORTED | UNVERIFIABLE - one sentence of evidence (quote a short phrase if possible).
@@ -146,12 +149,29 @@ fetched text counts.
 """
 
 # ---- limits (GUIDE 2.5): a broken prompt must not loop forever or burn tokens without bound ----
+TRANSIENT_MODEL_ERRORS = ("429", "500", "502", "503", "504", "UNAVAILABLE", "RESOURCE_EXHAUSTED", "overloaded",
+                          "high demand", "timed out", "timeout")
+
+
+def is_transient(exc):
+    """Retry the model call only on overload/rate-limit/timeout errors, never on bad requests or bad keys."""
+    text = f"{type(exc).__name__} {exc}"
+    return any(marker.lower() in text.lower() for marker in TRANSIENT_MODEL_ERRORS)
+
+
+def model_retry():
+    """Providers answer 503 "high demand" from time to time: back off and retry instead of failing the whole run."""
+    return ModelRetryMiddleware(max_retries=6, retry_on=is_transient, on_failure="error", initial_delay=5.0,
+                                max_delay=60.0)
+
+
 LEAD_LIMITS = [ModelCallLimitMiddleware(run_limit=150, exit_behavior="end"), ToolCallLimitMiddleware(run_limit=300)]
 
 
 def sub_limits():
-    """Fresh limit middleware for one subagent (each delegation is a new run with its own budget)."""
-    return [ModelCallLimitMiddleware(run_limit=40, exit_behavior="end"), ToolCallLimitMiddleware(run_limit=60)]
+    """Fresh limit + retry middleware for one subagent (each delegation is a new run with its own budget)."""
+    return [ModelCallLimitMiddleware(run_limit=40, exit_behavior="end"), ToolCallLimitMiddleware(run_limit=60),
+            model_retry()]
 
 
 # ---- TODO 3: subagents ----
@@ -188,4 +208,4 @@ def build_lead_agent(backend, model):
     `backend` is the sandbox from sandbox.open_sandbox(): it gives the agent the file tools and `execute`.
     """
     return create_deep_agent(model=model, system_prompt=LEAD_PROMPT, subagents=build_subagents(), backend=backend,
-                             middleware=[TodoListMiddleware(), *LEAD_LIMITS])
+                             middleware=[TodoListMiddleware(), *LEAD_LIMITS, model_retry()])

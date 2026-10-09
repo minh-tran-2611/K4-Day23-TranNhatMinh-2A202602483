@@ -10,6 +10,8 @@ import time
 from collections import Counter
 from pathlib import Path
 
+from langchain_core.callbacks import BaseCallbackHandler
+
 from agents import FINALIZER_PATH, REPORT_PATH, SOURCES_PATH, VALIDATOR_PATH, WORKDIR, build_lead_agent
 from model import make_model
 from sandbox import download, open_sandbox, upload
@@ -21,6 +23,14 @@ FINALIZER_SOURCE = ROOT / "finalize_citations.py"   # provided: uploaded next to
 RECURSION_LIMIT = 1000  # LangGraph steps of the lead graph (~2 per model->tool turn); subagents use middleware limits
 
 
+class ProgressLogger(BaseCallbackHandler):
+    """Prints one line per tool call (lead and subagents) to stderr, so a long run can be followed."""
+
+    def on_tool_start(self, serialized, input_str, **kwargs):
+        name = (serialized or {}).get("name") or kwargs.get("name") or "tool"
+        print(f"[tool] {name}: {' '.join(str(input_str).split())[:140]}", file=sys.stderr, flush=True)
+
+
 def slugify(topic):
     """Turn a topic into a safe file name: lower case, runs of non-word characters become one "-", max 60 chars,
     never empty (fall back to "topic"). The topic is user input: "../../x" must not escape reports/."""
@@ -30,7 +40,9 @@ def slugify(topic):
 
 def build_prompt(topic):
     """The user message sent to the lead agent."""
-    return (f"Research topic: {topic}\n\n"
+    today = time.strftime("%Y-%m-%d")
+    return (f"Research topic: {topic}\n"
+            f"Today's date: {today}. 'Recent' and 'the last two years' are relative to this date: tell the researchers.\n\n"
             f"Produce the cited survey report at {REPORT_PATH} and the merged sources at {SOURCES_PATH}, following "
             "every step of your instructions: plan, delegate at least 3 researchers in parallel, check and merge "
             f"their notes, write the report body, run the finalizer and the validator ({VALIDATOR_PATH}) until it "
@@ -100,7 +112,7 @@ def main(topic):
         agent = build_lead_agent(backend, model)
         try:
             result = agent.invoke({"messages": [{"role": "user", "content": build_prompt(topic)}]},
-                                  config={"recursion_limit": RECURSION_LIMIT})
+                                  config={"recursion_limit": RECURSION_LIMIT, "callbacks": [ProgressLogger()]})
             report_path = save_outputs(backend, topic, result["messages"], time.monotonic() - start,
                                        _model_name(model))
         except Exception as exc:  # GraphRecursionError, model/API errors, missing outputs: a failed run
