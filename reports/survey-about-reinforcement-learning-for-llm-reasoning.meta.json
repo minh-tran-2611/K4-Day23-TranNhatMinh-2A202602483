@@ -1,0 +1,26 @@
+{
+  "topic": "survey about reinforcement learning for LLM reasoning",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "elapsed_s": 3141.1,
+  "subagent_calls": 10,
+  "tool_calls": {
+    "write_todos": 1,
+    "task": 10,
+    "read_file": 17,
+    "execute": 10,
+    "write_file": 3,
+    "edit_file": 6,
+    "grep": 3
+  },
+  "tokens": {
+    "input": 1118427,
+    "output": 39187
+  },
+  "n_sources": 19,
+  "source_families": [
+    "arxiv",
+    "hf-daily",
+    "hf-search",
+    "web"
+  ]
+}

@@ -1,0 +1,154 @@
+[
+  {
+    "n": 1,
+    "id": "the-state-of-llm-reasoning-model-training",
+    "url": "https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training",
+    "title": "The State of Reinforcement Learning for LLM Reasoning",
+    "date": "2025-04-19",
+    "source": "web"
+  },
+  {
+    "n": 2,
+    "id": "chapter12/2",
+    "url": "https://huggingface.co/learn/llm-course/en/chapter12/2",
+    "title": "Introduction to Reinforcement Learning and its Role in LLMs",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 3,
+    "id": "2507.04136",
+    "url": "https://arxiv.org/abs/2507.04136",
+    "title": "A Technical Survey of Reinforcement Learning Techniques for Large Language Models",
+    "date": "2026-06",
+    "source": "arxiv"
+  },
+  {
+    "n": 4,
+    "id": "2608.30395",
+    "url": "https://arxiv.org/abs/2608.30395",
+    "title": "When LLM Meets Tree Search: A Systematic View of Inference as Search in Large Language Models",
+    "date": "2026-08-31",
+    "source": "arxiv"
+  },
+  {
+    "n": 5,
+    "id": "2501.03262",
+    "url": "https://arxiv.org/abs/2501.03262",
+    "title": "REINFORCE++: Stabilizing Critic-Free Policy Optimization with Global Advantage Normalization",
+    "date": "2025-01-04",
+    "source": "arxiv"
+  },
+  {
+    "n": 6,
+    "id": "2504.20834",
+    "url": "https://huggingface.co/papers/2504.20834",
+    "title": "Reinforcement Learning for LLM Reasoning Under Memory Constraints",
+    "date": "2025-04-29",
+    "source": "hf-search"
+  },
+  {
+    "n": 7,
+    "id": "2602.05281",
+    "url": "https://huggingface.co/papers/2602.05281",
+    "title": "Back to Basics: Revisiting Exploration in Reinforcement Learning for LLM Reasoning via Generative Probabilities",
+    "date": "2026-02-05",
+    "source": "hf-search"
+  },
+  {
+    "n": 8,
+    "id": "2610.12061",
+    "url": "https://arxiv.org/abs/2610.12061",
+    "title": "When Should Agents Think? Adaptive Reasoning via Cross-Turn Estimation",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 9,
+    "id": "2610.11502",
+    "url": "https://arxiv.org/abs/2610.11502",
+    "title": "Fed-GRPO: Reward-Signal-Driven Federated Group Relative Policy Optimization",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 10,
+    "id": "2610.11345",
+    "url": "https://arxiv.org/abs/2610.11345",
+    "title": "SynCo: Data Synthesis Co-Training for Self-Evolving LLMs via Multi-Agent Reinforcement Learning",
+    "date": "2026-10-08",
+    "source": "arxiv"
+  },
+  {
+    "n": 11,
+    "id": "2610.11959",
+    "url": "https://huggingface.co/papers/2610.11959",
+    "title": "MiMo-V2.6: Scaling Reinforcement Learning Towards Self-Improvement",
+    "date": "2026-10-08",
+    "source": "hf-daily"
+  },
+  {
+    "n": 12,
+    "id": "2609.35433",
+    "url": "https://huggingface.co/papers/2609.35433",
+    "title": "ReSPO: Reshaped Sequence Policy Optimization for Gradient Starvation in Off-Policy Learning",
+    "date": "2026-09-28",
+    "source": "hf-daily"
+  },
+  {
+    "n": 13,
+    "id": "2605.22949",
+    "url": "https://huggingface.co/papers/2605.22949",
+    "title": "MARGIN: Runtime Confidence Calibration for Multi-Agent Foundation Model Coordination",
+    "date": "2026-10-08",
+    "source": "hf-daily"
+  },
+  {
+    "n": 14,
+    "id": "2610.04928",
+    "url": "https://arxiv.org/abs/2610.04928",
+    "title": "Prompt Dominance and Asymmetric Verifier Costs: Empirical Ablations of GRPO at 1B Scale on GSM8K",
+    "date": "2026-10-04",
+    "source": "arxiv"
+  },
+  {
+    "n": 15,
+    "id": "2609.04648",
+    "url": "https://arxiv.org/abs/2609.04648",
+    "title": "ConsensusBench: Benchmark of Consensus Nodes for LLM Reasoning via Outcome Reward Densifying",
+    "date": "2026-09-04",
+    "source": "arxiv"
+  },
+  {
+    "n": 16,
+    "id": "2608.20256",
+    "url": "https://arxiv.org/abs/2608.20256",
+    "title": "Learning When to Think: Adaptive Reasoning for Test-Time Compute Allocation",
+    "date": "2026-08-20",
+    "source": "arxiv"
+  },
+  {
+    "n": 17,
+    "id": "2025.findings-acl.464",
+    "url": "https://aclanthology.org/2025.findings-acl.464.pdf",
+    "title": "Offline Reinforcement Learning for LLM Multi-step Reasoning",
+    "date": "2025-07-27",
+    "source": "web"
+  },
+  {
+    "n": 18,
+    "id": "sparkle-reasoning/sparkle",
+    "url": "https://github.com/sparkle-reasoning/sparkle",
+    "title": "SPARKLE: Beyond Accuracy: Dissecting Mathematical Reasoning for LLMs Under Reinforcement Learning",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 19,
+    "id": "2505.17652",
+    "url": "https://huggingface.co/papers/2505.17652",
+    "title": "Rethinking the Sampling Criteria in Reinforcement Learning for LLM Reasoning: A Competence-Difficulty Alignment Perspective",
+    "date": "2025-05-23",
+    "source": "hf-search"
+  }
+]
